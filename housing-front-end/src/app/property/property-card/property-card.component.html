@@ -1,9 +1,9 @@
 <div class="card">
   <div class="card-img-wrapper">
-    <img class="card-img-top h-250" src="../../../assets/images/house-default.png" alt="">
+    <img class="card-img-top h-250" src="../../../assets/images/{{property.Image}}.png" alt="">
     <ul class="list-inline text-center member-icons animate">
       <li class="list-inline-item">
-        <button class="btn btn-primary">
+        <button routerLink="/property-detail/{{property.Id}}" class="btn btn-primary">
           <i class="far fa-edit"></i>
         </button>
       </li>
