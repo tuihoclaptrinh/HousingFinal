@@ -1,25 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, Input } from '@angular/core';
+import { IPropertyBase } from 'src/app/model/ipropertybase';
 
-import { PropertyCardComponent } from './property-card.component';
 
-describe('PropertyCardComponent', () => {
-  let component: PropertyCardComponent;
-  let fixture: ComponentFixture<PropertyCardComponent>;
+@Component({
+  selector: 'app-property-card',
+  // template: `<h1>I am a card</h1>`,
+  templateUrl: 'property-card.component.html',
+  // styles: ['h1 {font-weight: normal;}']
+  styleUrls: ['property-card.component.css']
+}
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ PropertyCardComponent ]
-    })
-    .compileComponents();
-  });
+)
+export class PropertyCardComponent {
+  @Input() property: IPropertyBase;
+  @Input() hideIcons: boolean;
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(PropertyCardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+}
