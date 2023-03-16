@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "hspa-dc9f4"
+  },
+  "targets": {
+    "hspa-dc9f4": {
+      "hosting": {
+        "housing-front-end": [
+          "hspa-dc9f4"
+        ]
+      }
+    }
+  }
+}
