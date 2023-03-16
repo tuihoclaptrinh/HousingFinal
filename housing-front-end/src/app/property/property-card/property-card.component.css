@@ -3,14 +3,11 @@
   position: relative;
 }
 
-.h-250 {
-  height: 250px;
-}
-
 .card:hover img {
   transform: scale(1.2, 1.2);
   transition-duration: 500ms;
   transition-timing-function: ease-out;
+  height: 250px;
   opacity: .7;
 }
 
@@ -18,18 +15,22 @@
   transform: scale(1, 1);
   transition-duration: 500ms;
   transition-timing-function: ease-out;
+  height: 250px
 }
 
 .member-icons {
   position: absolute;
-  bottom: -30%;
+  bottom: -10%;
   left: 0;
   right: 0;
   margin-right: auto;
+  margin-left: auto;
+  opacity: 0;
 }
 
 .card-img-wrapper:hover .member-icons {
   bottom: 0;
+  opacity: 1;
 }
 
 .animate {
