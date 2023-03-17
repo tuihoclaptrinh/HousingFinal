@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using housing_back_end.Data;
+using Microsoft.AspNetCore.Mvc;
 
 namespace housing_back_end.Controllers;
 
@@ -6,15 +7,18 @@ namespace housing_back_end.Controllers;
 [ApiController]
 public class CityController : ControllerBase
 {
-    [HttpGet]
-    public IEnumerable<string> Get()
-    {
-        return new string[] { "Atlanta", "New York" };
-    }
 
-    [HttpGet("{id}")]
-    public string Get(int id)
+    private readonly DataContext context;
+    
+    public CityController(DataContext context)
     {
-        return "New York";
+        this.context = context;
+    }
+    
+    [HttpGet]
+    public IActionResult GetCities()
+    {
+        var cities = context.Cities.ToList();
+        return Ok(cities);
     }
 }
