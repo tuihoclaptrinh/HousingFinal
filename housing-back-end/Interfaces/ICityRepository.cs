@@ -10,4 +10,6 @@ public interface ICityRepository
 
     void DeteleCity(int cityId);
 
+    Task<City> FindCity(int id);
+
 }
