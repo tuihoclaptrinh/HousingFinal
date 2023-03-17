@@ -1,4 +1,5 @@
-﻿using housing_back_end.Dtos;
+﻿using AutoMapper;
+using housing_back_end.Dtos;
 using housing_back_end.Interfaces;
 using housing_back_end.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -10,27 +11,31 @@ namespace housing_back_end.Controllers;
 public class CityController : ControllerBase
 {
     private readonly IUnitOfWork _uow;
-    
-    public CityController(IUnitOfWork uow)
+    private readonly IMapper _mapper;
+
+    public CityController(IUnitOfWork uow, IMapper mapper)
     {
         this._uow = uow;
+        this._mapper = mapper;
     }
-    
+
     [HttpGet]
     public async Task<IActionResult> GetCities()
     {
         var cities = await _uow.CityRepository.GetCitiesAsync();
 
-        var citiesDto = from c in cities
+        var citiesDto = _mapper.Map<IEnumerable<CityDto>>(cities);
+
+        /*var citiesDto = from c in cities
             select new CityDto()
             {
                 Id = c.Id,
                 Name = c.Name
-            };
-        
+            };*/
+
         return Ok(citiesDto);
     }
-    
+
     // Post api/city/add?cityName=Name
     // Post api/city/add/Name
     /*[HttpPost("add")]
@@ -43,23 +48,27 @@ public class CityController : ControllerBase
         await _context.SaveChangesAsync();
         return Ok(city);
     }*/
-    
+
     // Post api/city/post -- Post the data JSON format
     [HttpPost("post")]
     public async Task<IActionResult> AddCity(CityDto cityDto)
     {
-        var city = new City
+        var city = _mapper.Map<City>(cityDto);
+        city.LastUpdateBy = 1;
+        city.LastUpdatedOn = DateTime.Now;
+
+        /*var city = new City
         {
             Name = cityDto.Name,
             LastUpdateBy = 1,
             LastUpdatedOn = DateTime.Now
-        };
-        
+        };*/
+
         _uow.CityRepository.AddCity(city);
         await _uow.SaveAsync();
         return StatusCode(201);
     }
-    
+
     [HttpDelete("delete/{cityId}")]
     public async Task<IActionResult> DeleteCity(int cityId)
     {
@@ -67,5 +76,4 @@ public class CityController : ControllerBase
         await _uow.SaveAsync();
         return Ok(cityId);
     }
-    
 }

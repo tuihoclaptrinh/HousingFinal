@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "FJBRIXGIR1LfUpfspl10ZRYBqx5pqFBL2d4flM42HBlvTf+7ATA16qifYRt0/lPS2bOhjffZ3ECYt/15s2GBrQ==",
+  "dgSpecHash": "XM2zKqAjdazQ5CIiD9v90oA9IT9/bgERYX/5zZQ632FF9vkpk+LLR3lLzEwMuAESGFT1H7ad/oL+fhmc3ELoTQ==",
   "success": true,
   "projectFilePath": "D:\\ManagerProgramming\\Project_DotNet\\Housing\\housing-back-end\\housing-back-end.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\ACER\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
+    "C:\\Users\\ACER\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\ACER\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
-    "C:\\Users\\ACER\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\ACER\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\ACER\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\ACER\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
     "C:\\Users\\ACER\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.13\\microsoft.entityframeworkcore.6.0.13.nupkg.sha512",
