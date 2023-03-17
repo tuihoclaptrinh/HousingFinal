@@ -1,4 +1,5 @@
-﻿using housing_back_end.Interfaces;
+﻿using housing_back_end.Dtos;
+using housing_back_end.Interfaces;
 using housing_back_end.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,7 +20,15 @@ public class CityController : ControllerBase
     public async Task<IActionResult> GetCities()
     {
         var cities = await _uow.CityRepository.GetCitiesAsync();
-        return Ok(cities);
+
+        var citiesDto = from c in cities
+            select new CityDto()
+            {
+                Id = c.Id,
+                Name = c.Name
+            };
+        
+        return Ok(citiesDto);
     }
     
     // Post api/city/add?cityName=Name
@@ -37,8 +46,15 @@ public class CityController : ControllerBase
     
     // Post api/city/post -- Post the data JSON format
     [HttpPost("post")]
-    public async Task<IActionResult> AddCity(City city)
+    public async Task<IActionResult> AddCity(CityDto cityDto)
     {
+        var city = new City
+        {
+            Name = cityDto.Name,
+            LastUpdateBy = 1,
+            LastUpdatedOn = DateTime.Now
+        };
+        
         _uow.CityRepository.AddCity(city);
         await _uow.SaveAsync();
         return StatusCode(201);
