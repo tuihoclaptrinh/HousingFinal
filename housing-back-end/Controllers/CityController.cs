@@ -2,6 +2,7 @@
 using housing_back_end.Dtos;
 using housing_back_end.Interfaces;
 using housing_back_end.Models;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace housing_back_end.Controllers;
@@ -69,6 +70,31 @@ public class CityController : ControllerBase
         return StatusCode(201);
     }
 
+    // 
+    [HttpPut("updateCityName/{id}")]
+    public async Task<IActionResult> UpdateCity(int id, CityUpdateDto cityDto)
+    {
+        var cityFromDb = await _uow.CityRepository.FindCity(id);
+        cityFromDb.LastUpdateBy = 1;
+        cityFromDb.LastUpdatedOn = DateTime.Now;
+        _mapper.Map(cityDto, cityFromDb);
+        await _uow.SaveAsync();
+        return StatusCode(200);
+    }
+    
+    // 
+    [HttpPatch("update/{id}")]
+    public async Task<IActionResult> UpdateCity(int id, JsonPatchDocument<City> cityToPatch)
+    {
+        var cityFromDb = await _uow.CityRepository.FindCity(id);
+        cityFromDb.LastUpdateBy = 1;
+        cityFromDb.LastUpdatedOn = DateTime.Now;
+        
+        cityToPatch.ApplyTo(cityFromDb, ModelState);
+        await _uow.SaveAsync();
+        return StatusCode(200);
+    }
+    
     [HttpDelete("delete/{cityId}")]
     public async Task<IActionResult> DeleteCity(int cityId)
     {
