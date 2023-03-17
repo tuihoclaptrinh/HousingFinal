@@ -1,4 +1,5 @@
-﻿using housing_back_end.Models;
+﻿using housing_back_end.Interfaces;
+using housing_back_end.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace housing_back_end.Data.Repo;
@@ -28,8 +29,4 @@ public class CityRepository: ICityRepository
         context.Cities.Remove(city);
     }
 
-    public async Task<bool> SaveAsync()
-    {
-        return await context.SaveChangesAsync() > 0;
-    }
 }

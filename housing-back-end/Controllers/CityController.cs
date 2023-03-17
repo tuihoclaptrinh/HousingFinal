@@ -1,4 +1,4 @@
-﻿using housing_back_end.Data.Repo;
+﻿using housing_back_end.Interfaces;
 using housing_back_end.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,17 +8,17 @@ namespace housing_back_end.Controllers;
 [ApiController]
 public class CityController : ControllerBase
 {
-    private readonly ICityRepository _repo;
+    private readonly IUnitOfWork _uow;
     
-    public CityController(ICityRepository repo)
+    public CityController(IUnitOfWork uow)
     {
-        this._repo = repo;
+        this._uow = uow;
     }
     
     [HttpGet]
     public async Task<IActionResult> GetCities()
     {
-        var cities = await _repo.GetCitiesAsync();
+        var cities = await _uow.CityRepository.GetCitiesAsync();
         return Ok(cities);
     }
     
@@ -39,16 +39,16 @@ public class CityController : ControllerBase
     [HttpPost("post")]
     public async Task<IActionResult> AddCity(City city)
     {
-        _repo.AddCity(city);
-        await _repo.SaveAsync();
+        _uow.CityRepository.AddCity(city);
+        await _uow.SaveAsync();
         return StatusCode(201);
     }
     
     [HttpDelete("delete/{cityId}")]
     public async Task<IActionResult> DeleteCity(int cityId)
     {
-        _repo.DeteleCity(cityId);
-        await _repo.SaveAsync();
+        _uow.CityRepository.DeteleCity(cityId);
+        await _uow.SaveAsync();
         return Ok(cityId);
     }
     

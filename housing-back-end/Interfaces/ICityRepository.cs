@@ -1,6 +1,6 @@
 ﻿using housing_back_end.Models;
 
-namespace housing_back_end.Data.Repo;
+namespace housing_back_end.Interfaces;
 
 public interface ICityRepository
 {
@@ -9,6 +9,5 @@ public interface ICityRepository
     void AddCity(City city);
 
     void DeteleCity(int cityId);
-    Task<bool> SaveAsync();
 
 }
