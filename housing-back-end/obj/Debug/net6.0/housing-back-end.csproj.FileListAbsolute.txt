@@ -60,3 +60,5 @@ D:\ManagerProgramming\Project_DotNet\Housing\housing-back-end\bin\Debug\net6.0\r
 D:\ManagerProgramming\Project_DotNet\Housing\housing-back-end\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 D:\ManagerProgramming\Project_DotNet\Housing\housing-back-end\bin\Debug\net6.0\Humanizer.dll
 D:\ManagerProgramming\Project_DotNet\Housing\housing-back-end\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\ManagerProgramming\Project_DotNet\Housing\housing-back-end\bin\Debug\net6.0\AutoMapper.dll
+D:\ManagerProgramming\Project_DotNet\Housing\housing-back-end\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
