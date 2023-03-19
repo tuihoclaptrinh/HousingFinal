@@ -13,6 +13,7 @@ import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
 })
 export class PropertyDetailComponent implements OnInit {
   public propertyId: number;
+  public mainPhotoUrl: string = null;
   property = new Property();
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
@@ -26,8 +27,11 @@ export class PropertyDetailComponent implements OnInit {
     this.route.data.subscribe(
       (data: Property) => {
         this.property = data['prp'];
+        console.log(this.property.photos);
       }
     );
+
+    this.property.age = this.housingService.getPropertyAge(this.property.estPossessionOn);
 
     // this.route.params.subscribe(
     //   (params) => {
@@ -50,34 +54,29 @@ export class PropertyDetailComponent implements OnInit {
       }
     ];
 
-    this.galleryImages = [
-      {
-        small: 'assets/images/prop-1.png',
-        medium: 'assets/images/prop-1.png',
-        big: 'assets/images/prop-1.png'
-      },
-      {
-        small: 'assets/images/prop-2.png',
-        medium: 'assets/images/prop-2.png',
-        big: 'assets/images/prop-2.png'
-      },
-      {
-        small: 'assets/images/prop-3.png',
-        medium: 'assets/images/prop-3.png',
-        big: 'assets/images/prop-3.png'
-      },
-      {
-        small: 'assets/images/prop-4.png',
-        medium: 'assets/images/prop-4.png',
-        big: 'assets/images/prop-4.png'
-      },
-      {
-        small: 'assets/images/prop-5.png',
-        medium: 'assets/images/prop-5.png',
-        big: 'assets/images/prop-5.png'
+    this.galleryImages = this.getPropertyPhotos();
+  }
+
+  changePrimaryPhoto(mainPhotoUrl: string) {
+    this.mainPhotoUrl = mainPhotoUrl;
+  }
+
+  getPropertyPhotos(): NgxGalleryImage[] {
+    const photoUrls: NgxGalleryImage[] = [];
+    for (const photo of this.property.photos) {
+      if (photo.isPrimary) {
+        this.mainPhotoUrl = photo.imageUrl;
       }
-    ];
-
-
+      else {
+        photoUrls.push(
+          {
+            small: photo.imageUrl,
+            medium: photo.imageUrl,
+            big: photo.imageUrl
+          }
+        );
+      }
+    }
+    return photoUrls;
   }
 }

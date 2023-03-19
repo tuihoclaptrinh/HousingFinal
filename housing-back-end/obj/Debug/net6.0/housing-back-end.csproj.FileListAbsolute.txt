@@ -66,3 +66,5 @@ D:\ManagerProgramming\Project_DotNet\Housing\housing-back-end\bin\Debug\net6.0\M
 D:\ManagerProgramming\Project_DotNet\Housing\housing-back-end\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 D:\ManagerProgramming\Project_DotNet\Housing\housing-back-end\bin\Debug\net6.0\Newtonsoft.Json.dll
 D:\ManagerProgramming\Project_DotNet\Housing\housing-back-end\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+D:\ManagerProgramming\Project_DotNet\Housing\housing-back-end\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\ManagerProgramming\Project_DotNet\Housing\housing-back-end\bin\Debug\net6.0\CloudinaryDotNet.dll

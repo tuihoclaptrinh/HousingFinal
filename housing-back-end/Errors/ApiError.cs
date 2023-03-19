@@ -4,10 +4,11 @@ namespace housing_back_end.Errors;
 
 public class ApiError
 {
+    public ApiError(){}
     public ApiError(int errorCode, string errorMessage, string errorDetails = null)
     {
         ErrorCode = errorCode;
-        ErrorMessage = errorMessage;
+        this.ErrorMessage = errorMessage;
         ErrorDetails = errorDetails;
     }
 
@@ -16,8 +17,11 @@ public class ApiError
     public string ErrorDetails { get; set; }
 
     public override string ToString()
-    {
-        return JsonSerializer.Serialize(this);
+    { 
+        var options = new JsonSerializerOptions()
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
+        return JsonSerializer.Serialize(this,options);
     }
-    
 }

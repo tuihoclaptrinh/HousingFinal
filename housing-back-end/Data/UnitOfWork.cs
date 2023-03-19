@@ -7,13 +7,24 @@ public class UnitOfWork : IUnitOfWork
 {
     private readonly DataContext _context;
 
-    public UnitOfWork(DataContext context)
+    public UnitOfWork(DataContext dc)
     {
-        this._context = context;
+        this._context = dc;
     }
+    public ICityRepository CityRepository => 
+        new CityRepository(_context);
 
-    public ICityRepository CityRepository => new CityRepository(_context);
-    public IUserRepository UserRepository => new UserRepository(_context);
+    public IUserRepository UserRepository =>         
+        new UserRepository(_context);
+
+    public IFurnishingTypeRepository FurnishingTypeRepository =>         
+        new FurnishingTypeRepository(_context);
+
+    public IPropertyTypeRepository PropertyTypeRepository =>         
+        new PropertyTypeRepository(_context);
+
+    public IPropertyRepository PropertyRepository => 
+        new PropertyRepository(_context);
 
     public async Task<bool> SaveAsync()
     {

@@ -2,7 +2,7 @@
 using housing_back_end.Middlewares;
 using Microsoft.AspNetCore.Diagnostics;
 
-namespace housing_back_end.Exceptions;
+namespace housing_back_end.Extensions;
 
 public static class ExceptionMiddlewareExtensions
 {
