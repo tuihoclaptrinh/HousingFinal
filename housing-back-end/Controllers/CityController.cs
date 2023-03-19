@@ -23,6 +23,7 @@ public class CityController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetCities()
     {
+        throw new UnauthorizedAccessException();
         var cities = await _uow.CityRepository.GetCitiesAsync();
 
         var citiesDto = _mapper.Map<IEnumerable<CityDto>>(cities);

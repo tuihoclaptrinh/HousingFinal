@@ -34,7 +34,7 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
-    app.ConfigureExceptionHandler();
+    app.ConfigureExceptionHandler(app.Environment);
 }
 
 app.UseHttpsRedirection();
