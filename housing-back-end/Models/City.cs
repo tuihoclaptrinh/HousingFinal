@@ -1,4 +1,6 @@
-﻿namespace housing_back_end.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace housing_back_end.Models;
 
 public class City
 {
