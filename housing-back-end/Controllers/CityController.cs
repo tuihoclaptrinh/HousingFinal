@@ -7,9 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace housing_back_end.Controllers;
 
-[Route("api/{controller}")]
-[ApiController]
-public class CityController : ControllerBase
+public class CityController : BaseController
 {
     private readonly IUnitOfWork _uow;
     private readonly IMapper _mapper;
