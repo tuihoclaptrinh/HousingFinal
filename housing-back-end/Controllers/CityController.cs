@@ -90,6 +90,9 @@ public class CityController : ControllerBase
         cityFromDb.LastUpdateBy = 1;
         cityFromDb.LastUpdatedOn = DateTime.Now;
         _mapper.Map(cityDto, cityFromDb);
+        
+        throw new Exception("Some unknown error occured");
+        
         await _uow.SaveAsync();
         return StatusCode(200);
     }

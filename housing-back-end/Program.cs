@@ -1,7 +1,11 @@
+using System.Net;
 using housing_back_end.Data;
 using housing_back_end.Data.Repo;
+using housing_back_end.Exceptions;
 using housing_back_end.Helpers;
 using housing_back_end.Interfaces;
+using housing_back_end.Middlewares;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,11 +24,17 @@ builder.Services.AddDbContext<DataContext>(options =>
 
 var app = builder.Build();
 
+app.UseMiddleware<ExceptionMiddleware>();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+else
+{
+    app.ConfigureExceptionHandler();
 }
 
 app.UseHttpsRedirection();
