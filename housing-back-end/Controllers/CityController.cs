@@ -54,6 +54,12 @@ public class CityController : ControllerBase
     [HttpPost("post")]
     public async Task<IActionResult> AddCity(CityDto cityDto)
     {
+
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+        
         var city = _mapper.Map<City>(cityDto);
         city.LastUpdateBy = 1;
         city.LastUpdatedOn = DateTime.Now;
@@ -71,8 +77,26 @@ public class CityController : ControllerBase
     }
 
     // 
+    [HttpPut("update/{id}")]
+    public async Task<IActionResult> UpdateCity(int id, CityDto cityDto)
+    {
+        if (id != cityDto.Id)
+        {
+            return BadRequest("Update are Not Allowed - CityId does not Exist!");
+        }
+        
+        var cityFromDb = await _uow.CityRepository.FindCity(id);
+
+        cityFromDb.LastUpdateBy = 1;
+        cityFromDb.LastUpdatedOn = DateTime.Now;
+        _mapper.Map(cityDto, cityFromDb);
+        await _uow.SaveAsync();
+        return StatusCode(200);
+    }
+    
+    // 
     [HttpPut("updateCityName/{id}")]
-    public async Task<IActionResult> UpdateCity(int id, CityUpdateDto cityDto)
+    public async Task<IActionResult> UpdateCityName(int id, CityUpdateDto cityDto)
     {
         var cityFromDb = await _uow.CityRepository.FindCity(id);
         cityFromDb.LastUpdateBy = 1;
